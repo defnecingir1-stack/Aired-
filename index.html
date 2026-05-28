@@ -17,23 +17,19 @@
             width: 100%;
             height: 100%;
             font-family: 'Syne', sans-serif;
-            background-color: #F5F0E8;
             color: #0F172A;
             overflow-x: hidden;
         }
 
-        /* Subtle grain texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2"/><feColorMatrix type="saturate" values="0.3"/></filter><rect width="100" height="100" fill="%23F5F0E8" filter="url(%23noise)"/></svg>');
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 1;
+        /* Background image with overlay */
+        body {
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.65)),
+                url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABQAZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
         main {
@@ -66,25 +62,13 @@
             animation: fadeInDown 0.8s ease-out 0.1s forwards;
         }
 
-        /* Main content grid - asymmetric layout */
+        /* Main content - single column centered */
         .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .left-column {
-            padding-right: 2rem;
-        }
-
-        .right-column {
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            min-height: 400px;
-            position: relative;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            max-width: 800px;
         }
 
         /* Tagline */
@@ -105,20 +89,22 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 2.5rem;
-            color: #0F172A;
+            color: #FFFFFF;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Body copy */
         .body-copy {
             font-size: 1.1rem;
             line-height: 1.7;
-            color: #475569;
+            color: #F0F0F0;
             margin-bottom: 3rem;
             max-width: 90%;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.55s forwards;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* CTA Section */
@@ -151,7 +137,7 @@
             font-size: 1rem;
             font-family: 'Syne', sans-serif;
             border: 2px solid #0891B2;
-            background-color: #FFFFFF;
+            background-color: rgba(255, 255, 255, 0.95);
             color: #0F172A;
             transition: all 0.3s ease;
         }
@@ -162,7 +148,8 @@
 
         .email-input:focus {
             outline: none;
-            background-color: #F0F9FA;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.2);
         }
 
         .join-button {
@@ -181,8 +168,9 @@
         }
 
         .join-button:hover {
-            background-color: #F5F0E8;
-            color: #0891B2;
+            background-color: #06B6D4;
+            border-color: #06B6D4;
+            box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
         }
 
         .join-button:active {
@@ -191,7 +179,7 @@
 
         .cta-subtext {
             font-size: 0.85rem;
-            color: #475569;
+            color: #E0E0E0;
             margin-top: 0.75rem;
         }
 
@@ -199,7 +187,7 @@
         .success-message {
             font-size: 1rem;
             font-weight: 600;
-            color: #0891B2;
+            color: #06B6D4;
             margin-top: 0.5rem;
             min-height: 1.5rem;
             opacity: 0;
@@ -210,20 +198,10 @@
             opacity: 1;
         }
 
-        /* Pull quote / stat in right column */
-        .stat-pullquote {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            line-height: 1.3;
-            color: #0F172A;
-            font-style: italic;
-            position: relative;
-            opacity: 0.15;
-            transform: rotate(-2deg);
-            font-weight: 700;
-            user-select: none;
-            opacity: 0;
-            animation: fadeInStat 1s ease-out 0.85s forwards;
+        /* Error state for input */
+        .email-input.error {
+            border-color: #d32f2f;
+            background-color: rgba(211, 47, 47, 0.05);
         }
 
         /* Footer */
@@ -233,8 +211,8 @@
             padding: 2rem;
             text-align: center;
             font-size: 0.85rem;
-            color: #475569;
-            border-top: 1px solid rgba(15, 23, 42, 0.1);
+            color: #E0E0E0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 4rem;
         }
 
@@ -245,7 +223,7 @@
         }
 
         footer a:hover {
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         /* Animations */
@@ -271,41 +249,10 @@
             }
         }
 
-        @keyframes fadeInStat {
-            from {
-                opacity: 0.05;
-                transform: rotate(-2deg) scale(0.95);
-            }
-            to {
-                opacity: 0.15;
-                transform: rotate(-2deg) scale(1);
-            }
-        }
-
-        /* Error state for input */
-        .email-input.error {
-            border-color: #d32f2f;
-            background-color: rgba(211, 47, 47, 0.05);
-        }
-
         /* Mobile responsive */
         @media (max-width: 768px) {
             main {
                 padding: 3rem 1.5rem;
-            }
-
-            .content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .left-column {
-                padding-right: 0;
-            }
-
-            .right-column {
-                min-height: 300px;
-                justify-content: flex-start;
             }
 
             .hero-statement {
@@ -315,10 +262,6 @@
             .body-copy {
                 font-size: 1rem;
                 max-width: 100%;
-            }
-
-            .stat-pullquote {
-                font-size: 1.6rem;
             }
 
             .form-container {
@@ -351,45 +294,37 @@
             <div class="brand">Aired</div>
 
             <div class="content">
-                <div class="left-column">
-                    <div class="tagline">Clean starts here.</div>
+                <div class="tagline">Clean starts here.</div>
 
-                    <h1 class="hero-statement">You don't know where it's been. Now you will.</h1>
+                <h1 class="hero-statement">You don't know where it's been. Now you will.</h1>
 
-                    <p class="body-copy">
-                        Secondhand clothing is amazing — but it comes with unknowns. Aired is developing the first science-backed hygiene standard for thrifted fashion. We're testing, researching, and building protocols that will eventually transform how thrift stores approach cleanliness. Starting in Waterville, Maine and going everywhere.
-                    </p>
+                <p class="body-copy">
+                    Secondhand clothing is amazing — but it comes with unknowns. Aired is developing the first science-backed hygiene standard for thrifted fashion. We're testing, researching, and building protocols that will eventually transform how thrift stores approach cleanliness. Starting in Waterville, Maine and going everywhere.
+                </p>
 
-                    <div class="cta-section">
-                        <label class="cta-label">Get early access</label>
-                        <form id="waitlist-form">
-                            <div class="form-container">
-                                <input 
-                                    type="email" 
-                                    class="email-input" 
-                                    id="email-input" 
-                                    placeholder="your@email.com" 
-                                    required
-                                >
-                                <button type="submit" class="join-button">Join waitlist</button>
-                            </div>
-                            <p class="cta-subtext">Be the first to know when Aired launches.</p>
-                            <div class="success-message" id="success-message"></div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="right-column">
-                    <div class="stat-pullquote">
-                        "The average thrifted item passes through 3+ owners before reaching you. Nobody's been checking what came with it."
-                    </div>
+                <div class="cta-section">
+                    <label class="cta-label">Get early access</label>
+                    <form id="waitlist-form">
+                        <div class="form-container">
+                            <input 
+                                type="email" 
+                                class="email-input" 
+                                id="email-input" 
+                                placeholder="your@email.com" 
+                                required
+                            >
+                            <button type="submit" class="join-button">Join waitlist</button>
+                        </div>
+                        <p class="cta-subtext">Be the first to know when Aired launches.</p>
+                        <div class="success-message" id="success-message"></div>
+                    </form>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        Aired © 2026 · Built by a college student researcher who got tired of the secondhand smell.
+        Aired © 2026 · Built by an undergraduate researcher who got tired of the secondhand smell.
     </footer>
 
     <script>
